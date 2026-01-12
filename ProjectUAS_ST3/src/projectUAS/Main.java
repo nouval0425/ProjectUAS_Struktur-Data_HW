@@ -13,14 +13,22 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // --- PERUBAHAN DISINI ---
+        // Saat aplikasi mulai, jangan langsung buka dashboard.
+        // Panggil Login dulu. Jika login sukses, baru panggil showDashboard.
         
+        Login.show(primaryStage, () -> {
+            showDashboard(primaryStage); // Ini akan dijalankan jika login berhasil
+        });
+    }
+
+    // --- KODE DASHBOARD LAMA DIPINDAHKAN KE SINI ---
+    public void showDashboard(Stage primaryStage) {
         VBox root = new VBox(30);
         root.setAlignment(Pos.CENTER);
 
-        
         try {
-            // Path harus sesuai dengan nama package di Eclipse: application.img
-            // Dan nama file harus sama persis: Background_merah.png
+            // Path gambar
             Image bgImg = new Image(getClass().getResourceAsStream("Background_merah.png")); 
 
             if (bgImg.isError()) {
@@ -31,7 +39,7 @@ public class Main extends Application {
                 bgImg,
                 BackgroundRepeat.NO_REPEAT, 
                 BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,   
+                BackgroundPosition.CENTER,    
                 new BackgroundSize(100, 100, true, true, true, false) 
             );
 
@@ -68,6 +76,9 @@ public class Main extends Application {
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setTitle("Penjualan HW - Dashboard");
         primaryStage.setScene(scene);
+        
+        // Agar posisi window tetap di tengah saat ganti scene dari login ke dashboard
+        primaryStage.centerOnScreen(); 
         primaryStage.show();
     }
 

@@ -10,6 +10,7 @@ public class Transaksi {
         private DoubleProperty harga;
         private IntegerProperty jumlah;
         private DoubleProperty subtotal;
+        
 
         public KeranjangItem(int id, String nama, double harga, int jumlah) {
             this.idBarang = new SimpleIntegerProperty(id);
@@ -27,5 +28,6 @@ public class Transaksi {
         public DoubleProperty subtotalProperty() { return subtotal; }
         public StringProperty namaBarangProperty() { return namaBarang; }
         public IntegerProperty jumlahProperty() { return jumlah; }
+        
     }
 }
